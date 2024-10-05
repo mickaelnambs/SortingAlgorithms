@@ -36,6 +36,24 @@
         }
     }
 
+    // Tri par insertion.
+    public static void InsertionSort(int[] arr)
+    {
+        int n = arr.Length;
+        for (int i = 1; i < n; ++i)
+        {
+            int key = arr[i];
+            int j = i - 1;
+
+            while (j >= 0 && arr[j] > key)
+            {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
     public static void Main(string[] args)
     {
         int[] arr1 = { 64, 34, 25, 12, 22, 11, 90 };
@@ -49,6 +67,12 @@
         PrintArray(arr2);
         SelectionSort(arr2);
         PrintArray(arr2);
+
+        int[] arr3 = { 12, 11, 13, 5, 6 };
+        Console.WriteLine("\nTri par insertion:");
+        PrintArray(arr3);
+        InsertionSort(arr3);
+        PrintArray(arr3);
     }
 
     private static void PrintArray(int[] arr)
