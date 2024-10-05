@@ -112,6 +112,37 @@
         }
     }
 
+    // Tri rapide (Quicksort).
+    public static void QuickSort(int[] arr, int low, int high)
+    {
+        if (low < high)
+        {
+            int pi = Partition(arr, low, high);
+            QuickSort(arr, low, pi - 1);
+            QuickSort(arr, pi + 1, high);
+        }
+    }
+
+    private static int Partition(int[] arr, int low, int high)
+    {
+        int pivot = arr[high];
+        int i = (low - 1);
+        for (int j = low; j < high; j++)
+        {
+            if (arr[j] < pivot)
+            {
+                i++;
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        int temp1 = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp1;
+        return i + 1;
+    }
+
     public static void Main(string[] args)
     {
         int[] arr1 = { 64, 34, 25, 12, 22, 11, 90 };
@@ -137,6 +168,12 @@
         PrintArray(arr5);
         MergeSort(arr5, 0, arr5.Length - 1);
         PrintArray(arr5);
+
+        int[] arr4 = { 10, 7, 8, 9, 1, 5 };
+        Console.WriteLine("\nTri rapide:");
+        PrintArray(arr4);
+        QuickSort(arr4, 0, arr4.Length - 1);
+        PrintArray(arr4);
     }
 
     private static void PrintArray(int[] arr)
